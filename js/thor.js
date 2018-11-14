@@ -19,7 +19,8 @@ const THORSTORE = [
     sel2: 'FENRIS',
     sel3: 'GUNGNIR',
     sel4: 'MJÖLNIR',
-    ans: this.sel4
+    ans: this.sel4,
+    ansText: 'Mjölnir (literally "that which smashes") is depicted in Norse mythology as a fearsome weapon, capable of leveling mountains.'
   },
 
   {
@@ -29,7 +30,8 @@ const THORSTORE = [
     sel2: 'ODIN',
     sel3: 'FENRIS',
     sel4: 'LOKI',
-    ans: this.sel2
+    ans: this.sel2,
+    ansText: 'One of the most complex and enigmatic characters in Norse mythology, Odin is the one-eyed God of war and death, as well as wisdom and poetry. He is often accompanied by his animal companions--the wolves Geri and Freki and the ravens Huginn and Muninn, who bring him information from all over Midgard'
   },
 
   {
@@ -38,8 +40,9 @@ const THORSTORE = [
     sel1: 'RAGNARÖK',
     sel2: 'SLEIPNIR',
     sel3: 'VALHALLA',
-    sel4: 'YGGDRASILL',
-    ans: this.sel1
+    sel4: 'YGGDRASIL',
+    ans: this.sel1,
+    ansText: 'Ragnarök is an important event in Norse mythology, and has been the subject of scholarly discourse and theory throughout the history of Germanic studies. The event is attested primarily in the Poetic Edda and foretells the death not only of Thor, but also of Odin, Tyr, Freyr, Heimdall, and Loki.'
   },
 
   {
@@ -49,36 +52,18 @@ const THORSTORE = [
     sel2: 'HEIMDALL',
     sel3: 'BALDER',
     sel4: 'VOLSTAGG',
-    ans: this.sel2
+    ans: this.sel2,
+    ansText: 'In Norse mythology, the Nine Mothers of Heimdall are nine sisters who gave birth to the god Heimdall, the all-seeing and all-hearing guardian sentry of Asgard who keeps watch for the onset of Ragnarök.'
   },
 
   {
     number: 5,
-    text: '5) Who was the first Marvel character outside of the Norse pantheon to be deemed worthy to wield Thor\'s hammer?',
-    sel1: 'HERCULES',
-    sel2: 'VISION',
-    sel3: 'BETA RAY BILL',
-    sel4: 'IRON MAN',
-    ans: this.sel3
-  },
-
-  {
-    number: 6,
-    text: '6) What is responsible for Thor\'s immortality?',
-    sel1: 'HE BATHES IN THE BLACK SEA',
-    sel2: 'HE SLEEPS UNDER THE STARS',
-    sel3: 'HE EATS APPLES',
-    sel4: 'HE DRANK THE BLOOD OF THE BERSERKER',
-    ans: this.sel3
-  },
-
-  {
-    number: 7,
-    text: '7) What animals pull Thor\'s chariot?',
-    sel1: 'LIONS',
-    sel2: 'BULLS',
-    sel3: 'WOLVES',
-    sel4: 'GOATS',
-    ans: this.sel3
-  },
+    text: '5) What part of Thor\'s costume is enchanted?',
+    sel1: 'HIS CAPE',
+    sel2: 'HIS BOOTS',
+    sel3: 'HIS HELMET',
+    sel4: 'HIS BELT',
+    ans: this.sel4,
+    ansText: 'In Norse mythology, Megingjord is Thor\'s enchanted Belt of Strength. When worn, the belt doubles Thor\'s already legendary strength.'
+  }
 ];

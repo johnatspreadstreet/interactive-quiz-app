@@ -13,6 +13,10 @@ img {
     max-height: 100%;
 }
 
+img:hover {
+    cursor:url(../img/mjolnir.cur),auto;
+}
+
 .avengers-logo {
     max-width: 10%;
     margin: 0 auto;

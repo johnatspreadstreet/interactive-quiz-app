@@ -89,11 +89,11 @@ const resultsTemplate = `
 const answersTemplate = `
   <section class="answers">
     <form action="">
-      <input type="button" value="${THORSTORE[0].sel1}">
-      <input type="button" value="${THORSTORE[0].sel2}">
-      <input type="button" value="${THORSTORE[0].sel3}">
-      <input type="button" value="${THORSTORE[0].sel4}">
-      <input type="button" value="Submit">
+      <input class="selection" type="button" value="${THORSTORE[0].sel1}">
+      <input class="selection" type="button" value="${THORSTORE[0].sel2}">
+      <input class="selection" type="button" value="${THORSTORE[0].sel3}">
+      <input class="selection" type="button" value="${THORSTORE[0].sel4}">
+      <input class="selection" type="button" value="Submit">
     </form>
   </section>
 `;

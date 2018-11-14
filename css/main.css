@@ -31,3 +31,7 @@ img:hover {
 header {
     margin: 5% auto;
 }
+
+button:focus { 
+    background-color: darkred;
+}

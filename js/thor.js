@@ -67,3 +67,42 @@ const THORSTORE = [
     ansText: 'In Norse mythology, Megingjord is Thor\'s enchanted Belt of Strength. When worn, the belt doubles Thor\'s already legendary strength.'
   }
 ];
+
+const questionTemplate = `
+  <section class="question">
+    <h1>${THORSTORE[0].text}</h1>
+  </section>
+    `;
+
+const resultsTemplate = `
+  <section class="results">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </section>
+  `;
+
+const answersTemplate = `
+  <section class="answers">
+    <form action="">
+      <input type="button" value="${THORSTORE[0].sel1}">
+      <input type="button" value="${THORSTORE[0].sel2}">
+      <input type="button" value="${THORSTORE[0].sel3}">
+      <input type="button" value="${THORSTORE[0].sel4}">
+      <input type="button" value="Submit">
+    </form>
+  </section>
+`;
+
+const submitDialogTemplate = `
+  <section class="dialog">
+    <p class="title">You got that right!</p>
+    <p class="body">${THORSTORE[0].ansText}</p>
+    <img src="img/mjolnir.jpg" alt="The mighty Mjolnir!">
+    <button class="continue">Continue</button>
+  </section>
+`;

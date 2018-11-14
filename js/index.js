@@ -1,33 +1,33 @@
 'use strict';
 
-function renderStartPage() {
-    // This function is used to render the first page
-    console.log('`renderStartPage` ran');
+let questionNumber = 0;
+
+function renderQuestion() {
+    // This function will render a question on the page
+    $("main").append(questionTemplate);
+}
+
+function activeButton() {
+    // This function will add the 'active' class to a button
+    $('.answers').click('button', function() {
+        $('button').addClass('focus');
+    });
 }
 
 function startQuiz() {
     // This function will start the quiz
-    console.log('`startQuiz` ran');
+    // When user clicks button, .intro is removed
+    $(".start").click(function() {
+        $(".intro").remove();
+        renderQuestion();
+        $("main").append(resultsTemplate);
+        $("main").append(answersTemplate);
+    });
 }
 
-function renderQuestionPage() {
-    // This function will start the rendering of the question template
-    console.log('`renderQuestionPage` ran');
-}
-
-function renderQuestion() {
-    // This function will render a question on the page
-    console.log('`renderQuestion` ran');
-}
-
-function renderSelections() {
+function renderResults() {
     // This function will render possible selections for a question
     console.log('`renderSelections` ran');
-}
-
-function renderSelectionImage() {
-    // This function will render an image based on a users selection
-    console.log('`renderSelectionImage` ran');
 }
 
 function renderAnswerPage() {
@@ -41,12 +41,9 @@ function renderScorePage() {
 }
 
 function createQuiz() {
-    renderStartPage();
     startQuiz();
-    renderQuestionPage();
-    renderQuestion();
-    renderSelections();
-    renderSelectionImage();
+    activeButton();
+    renderResults();
     renderAnswerPage();
     renderScorePage();
 }

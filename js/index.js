@@ -67,9 +67,35 @@ const THORSTORE = [
 
 function questionTemplate() {
   let questionTemplate = `
-        <section class="question">
-        <h1>${THORSTORE[questionNumber].text}</h1>
-        </section>
+    <section class="question container">
+      <h1>${THORSTORE[questionNumber].text}</h1>
+    </section>
+
+    <div class='picture-select closed'>
+      <img src="${THORSTORE[questionNumber].sel1pic}" alt="">
+    </div>
+
+    <footer>
+      <form class="form container" action="">
+          <div class="inputGroup">
+              <input id="radio1" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel1}">
+              <label class="button-label" for="radio1">${THORSTORE[questionNumber].sel1}</label>
+          </div>
+          <div class="inputGroup">    
+              <input id="radio2" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel2}">
+              <label class="button-label" for="radio2">${THORSTORE[questionNumber].sel2}</label>
+          </div>
+          <div class="inputGroup">    
+              <input id="radio3" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel3}">
+              <label class="button-label" for="radio3">${THORSTORE[questionNumber].sel3}</label>
+          </div>
+          <div class="inputGroup">        
+              <input id="radio4" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel4}">
+              <label class="button-label" for="radio4">${THORSTORE[questionNumber].sel4}</label>
+          </div>
+          <input id="" class="submit-button" type="submit" name="Submit" value="Submit" disabled>
+      </form>
+    </footer>
     `;
   return questionTemplate;
 }
@@ -89,32 +115,14 @@ function resultsTemplate() {
   return resultsTemplate;
 }
 
-function answersTemplate() {
-  const answersTemplate = `
-        <section class="answers">
-            <form action="">
-            <input class="selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel1}">${THORSTORE[questionNumber].sel1}
-            <input class="selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel2}">${THORSTORE[questionNumber].sel2}
-            <input class="selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel3}">${THORSTORE[questionNumber].sel3}
-            <input class="selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel4}">${THORSTORE[questionNumber].sel4}
-            <input class="submit-button" type="submit" name="Submit" value="Submit" disabled>
-            </form>
-            <div class='picture-select closed'>
-                <img src="${THORSTORE[questionNumber].sel1pic}" alt="">
-            </div>
-        </section>
-    `;
-  return answersTemplate;
-}
-
 const submitDialogTemplateCorrect = `
     <section>
-        <div class="modal">
+        <div class="modal" id="modal" style="background-image: url('img/question-correct.gif'); background-size: contain; background-repeat: no-repeat;">
+          <div class="modal-guts">
             <p class="title">You got that right!</p>
             <p class="body">${THORSTORE[questionNumber].ansText}</p>
-            <img src="" alt="The mighty Mjolnir!">
             <button class="continue">Continue</button>
-            <img src="img/question-correct.gif" alt="Thor success image...good work!">
+          </div>
         </div>
         <div class="modal-overlay" id="modal-overlay closed"></div>
     </section>
@@ -138,18 +146,8 @@ function renderQuestion() {
   $('main').append(questionTemplate());
 }
 
-function renderResults() {
-  $('main').append(resultsTemplate());
-}
-
-function renderAnswers() {
-  $('main').append(answersTemplate());
-}
-
 function renderQuestionPage() {
   renderQuestion();
-  renderResults();
-  renderAnswers();
 }
 
 function makeFocus(element) {
@@ -163,7 +161,7 @@ function startQuiz() {
   // This function will start the quiz
   // When user clicks button, .intro is removed
   $('.start').click(function() {
-    $('.intro').remove();
+    $('.intro').empty();
     renderQuestionPage();
   });
 }
@@ -192,12 +190,19 @@ function userSubmitAnswer() {
 
 function ifAnswerIsCorrect() {
   // Handles the modal changes for if the answer is correct
+  let findQuestion = `.q${questionNumber+1}`;
+  console.log(findQuestion);
+  $(findQuestion).removeClass('current');
+  $(findQuestion).addClass('yes');
   $('main').append(submitDialogTemplateCorrect);
   score++;
 }
 
 function ifAnswerIsIncorrect() {
   // Handles the modal changes for if the answer is incorrect
+  let findQuestion = `.q${questionNumber+1}`;
+  $(findQuestion).removeClass('current');
+  $(findQuestion).addClass('no');
   $('main').append(submitDialogTemplateIncorrect);
 }
 
@@ -207,6 +212,8 @@ function advanceQuestion() {
     $('.modal').addClass('closed');
     $('.modal-overlay').addClass('closed');
     iterateQuestion();
+    let findQuestion = `.q${questionNumber+1}`;
+    $(findQuestion).addClass('current');
     if (questionNumber === 5) {
       renderScorePage(score);
     } else {
@@ -220,8 +227,8 @@ function advanceQuestion() {
 function renderScorePage(score) {
   // After user is finished, they will get the Score Page, which details their score
   let results =  `    
-    <section class="results">
-        <h2>Final Score: ${score} out of ${THORSTORE.length}</h2>
+    <section class="container">
+        <h1>Final Score: ${score} out of ${THORSTORE.length}</h1>
         <h3>You should definitely play again!</h3>
         <button class='play-again'>Play Again</button>
     </section>

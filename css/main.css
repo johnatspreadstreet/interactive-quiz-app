@@ -2,6 +2,46 @@
     box-sizing: border-box;
 }
 
+body {
+    background-image: url('../img/nightsky.jpg');
+    color: white;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+h1 { 
+    color: #ffffff; 
+    font-family: 'Raleway',sans-serif; 
+    font-size: 62px; 
+    font-weight: 800; 
+    line-height: 72px; 
+    margin: 0 0 24px; 
+    text-align: center; 
+    text-transform: uppercase; 
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.question h1 {
+    padding-top: 90px;
+}
+
+/* .center {
+    height: 100vh;
+} */
+
 .center-me {
     height: 200px;
     text-align: center;
@@ -36,6 +76,13 @@ button:focus {
     background-color: darkred;
 }
 
+.picture-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
 .modal {
     position: fixed;
     top: 50%;
@@ -47,8 +94,25 @@ button:focus {
     max-height: 100%;
     z-index: 1010;
     background: white;
+    color: black;
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
 }
+
+.modal-guts {
+    /* cover the modal */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  
+    /* spacing as needed */
+    padding: 20px 50px 20px 20px;
+  
+    /* let it scroll */
+    overflow: auto;
+    
+  }
 
 .modal-overlay {
     z-index: 1000;
@@ -60,26 +124,106 @@ button:focus {
     background: rgba(0, 0, 0, 0.6);
 }
 
-.modal.closed, .modal-overlay.closed, .picture-select.closed {
+.modal.closed, 
+.modal-overlay.closed, 
+.picture-select.closed, 
+.hidden {
     display: none;
 }
 
 .results {
-    position: fixed;
+    position: absolute;
+    margin: -190px 10px;
     right: 0;
     top: 50%;
+    width: auto;
+    font-size: 50px;
+    background: rgba(26, 44, 48, 0.8);
+    padding: 10px 10px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 
 .all {
     background-image: url("../img/all.png");
     background-repeat: no-repeat;
     background-size: contain;
-    font-size: 30px;
 }
 
 .current {
     background-image: url("../img/current.png");
     background-repeat: no-repeat;
     background-size: contain;
-    font-size: 30px;
+}
+
+.no {
+    background-image: url("../img/no.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.yes {
+    background-image: url("../img/yes.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.button-wrap {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    margin-top: -2.5em;
+  }
+
+@media (max-width: 40em) {
+    .button-wrap {
+        margin-top: -1.5em;
+    }
+}
+
+.button-label {
+    display: inline-block;
+    padding: 1em 2em;
+    margin: 0.5em;
+    cursor: pointer;
+    color: #292929;
+    border-radius: 0.25em;
+    background: #efefef;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
+    transition: 0.3s;
+    user-select: none;
+    h1 {
+        font-size: 1em;
+        font-family: $font-stack;
+      }
+}
+
+.button-label:hover {
+    background: darken(#efefef, 10%);
+    color: darken(#292929, 10%);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.32);
+}
+
+.button-label:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0px -1px 0 rgba(0,0,0,0.22); 
+}
+
+#radio1:checked + .button-label,
+#radio2:checked + .button-label,
+#radio3:checked + .button-label,
+#radio4:checked + .button-label {
+    background: #2ECC71;
+    color: #efefef;
+}
+
+@media (max-width: 40em) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+div.progress {
+    padding: 15px;
 }

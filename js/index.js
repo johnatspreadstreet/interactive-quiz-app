@@ -17,7 +17,10 @@ const THORSTORE = [
     sel4: 'MJÖLNIR',
     ans: 'MJÖLNIR',
     ansText: 'Mjölnir (literally "that which smashes") is depicted in Norse mythology as a fearsome weapon, capable of leveling mountains.',
-    sel1pic: 'img/asgard.jpg'
+    sel1pic: 'img/asgard.jpg',
+    sel2pic: 'img/fenris.png',
+    sel3pic: 'img/gungnir.png',
+    sel4pic: 'img/mjolnir.png'
   },
 
   {
@@ -28,7 +31,11 @@ const THORSTORE = [
     sel3: 'FENRIS',
     sel4: 'LOKI',
     ans: 'ODIN',
-    ansText: 'One of the most complex and enigmatic characters in Norse mythology, Odin is the one-eyed God of war and death, as well as wisdom and poetry. He is often accompanied by his animal companions--the wolves Geri and Freki and the ravens Huginn and Muninn, who bring him information from all over Midgard'
+    ansText: 'One of the most complex and enigmatic characters in Norse mythology, Odin is the one-eyed God of war and death, as well as wisdom and poetry. He is often accompanied by his animal companions--the wolves Geri and Freki and the ravens Huginn and Muninn, who bring him information from all over Midgard',
+    sel1pic: 'img/balder.gif',
+    sel2pic: 'img/odin.png',
+    sel3pic: 'img/fenris.png',
+    sel4pic: 'img/loki.png'
   },
 
   {
@@ -39,7 +46,11 @@ const THORSTORE = [
     sel3: 'VALHALLA',
     sel4: 'YGGDRASIL',
     ans: 'RAGNARÖK',
-    ansText: 'Ragnarök is an important event in Norse mythology, and has been the subject of scholarly discourse and theory throughout the history of Germanic studies. The event is attested primarily in the Poetic Edda and foretells the death not only of Thor, but also of Odin, Tyr, Freyr, Heimdall, and Loki.'
+    ansText: 'Ragnarök is an important event in Norse mythology. The event is attested primarily in the Poetic Edda and foretells the death not only of Thor, but also of Odin, Tyr, Freyr, Heimdall, and Loki.',
+    sel1pic: 'img/ragnarok.png',
+    sel2pic: 'img/sleipnir.png',
+    sel3pic: 'img/gungnir.png',
+    sel4pic: 'img/yggdrasil.png'
   },
 
   {
@@ -50,7 +61,11 @@ const THORSTORE = [
     sel3: 'BALDER',
     sel4: 'VOLSTAGG',
     ans: 'HEIMDALL',
-    ansText: 'In Norse mythology, the Nine Mothers of Heimdall are nine sisters who gave birth to the god Heimdall, the all-seeing and all-hearing guardian sentry of Asgard who keeps watch for the onset of Ragnarök.'
+    ansText: 'In Norse mythology, the Nine Mothers of Heimdall are nine sisters who gave birth to the god Heimdall, the all-seeing and all-hearing guardian sentry of Asgard who keeps watch for the onset of Ragnarök.',
+    sel1pic: 'img/fandral.png',
+    sel2pic: 'img/heimdall.png',
+    sel3pic: 'img/balder.gif',
+    sel4pic: 'img/volstagg.png'
   },
 
   {
@@ -61,7 +76,11 @@ const THORSTORE = [
     sel3: 'HIS HELMET',
     sel4: 'HIS BELT',
     ans: 'HIS BELT',
-    ansText: 'In Norse mythology, Megingjord is Thor\'s enchanted Belt of Strength. When worn, the belt doubles Thor\'s already legendary strength.'
+    ansText: 'In Norse mythology, Megingjord is Thor\'s enchanted Belt of Strength. When worn, the belt doubles Thor\'s already legendary strength.',
+    sel1pic: 'img/cape.png',
+    sel2pic: 'img/boots.png',
+    sel3pic: 'img/helmet.png',
+    sel4pic: 'img/belt.png'
   }
 ];
 
@@ -72,7 +91,7 @@ function questionTemplate() {
     </section>
 
     <div class='picture-select closed'>
-      <img src="${THORSTORE[questionNumber].sel1pic}" alt="">
+      <img src="${THORSTORE[questionNumber].sel4pic}" alt="">
     </div>
 
     <footer>
@@ -115,31 +134,44 @@ function resultsTemplate() {
   return resultsTemplate;
 }
 
-const submitDialogTemplateCorrect = `
-    <section>
-        <div class="modal" id="modal" style="background-image: url('img/question-correct.gif'); background-size: contain; background-repeat: no-repeat;">
-          <div class="modal-guts">
-            <p class="title">You got that right!</p>
-            <p class="body">${THORSTORE[questionNumber].ansText}</p>
-            <button class="continue">Continue</button>
+function submitDialogTemplateCorrect() {
+  const submitDialogTemplateCorrect = `
+      <section>
+          <div class="modal" id="modal">
+            <div class="modal-guts">
+              <p class="title">You got that right!</p>
+              <p class="body">${THORSTORE[questionNumber].ansText}</p>
+              <div>
+                <img class"modal-img" src="img/question-correct.gif" alt="">
+              </div>
+              <button class="continue button button1">Continue</button>
+            </div>
           </div>
-        </div>
-        <div class="modal-overlay" id="modal-overlay closed"></div>
-    </section>
-`;
+          <div class="modal-overlay" id="modal-overlay closed"></div>
+      </section>
+  `;
+  return submitDialogTemplateCorrect;
+}
 
-const submitDialogTemplateIncorrect = `
+
+function submitDialogTemplateIncorrect() {
+  const submitDialogTemplateIncorrect = `
     <section>
-        <div class="modal">
-            <p class="title">You got that wrong :(</p>
-            <p class="body">${THORSTORE[questionNumber].ansText}</p>
-            <img src="" alt="The mighty Mjolnir!">
-            <button class="continue">Continue</button>
-            <img src="img/question-wrong.gif" alt="Thor incorrect...maybe next time!">
+      <div class="modal" id="modal">
+        <div class="modal-guts">
+          <p class="title">You got that wrong!</p>
+          <p class="body">${THORSTORE[questionNumber].ansText}</p>
+          <div>
+            <img src="img/question-wrong.gif" alt="">
+          </div>
+          <button class="continue button button1">Continue</button>
         </div>
-        <div class="modal-overlay" id="modal-overlay closed"></div>
+      </div>
+      <div class="modal-overlay" id="modal-overlay closed"></div>
     </section>
-`;
+  `;
+  return submitDialogTemplateIncorrect;
+}
 
 function renderQuestion() {
   // This function will render a question on the page
@@ -194,7 +226,7 @@ function ifAnswerIsCorrect() {
   console.log(findQuestion);
   $(findQuestion).removeClass('current');
   $(findQuestion).addClass('yes');
-  $('main').append(submitDialogTemplateCorrect);
+  $('main').append(submitDialogTemplateCorrect());
   score++;
 }
 
@@ -203,7 +235,7 @@ function ifAnswerIsIncorrect() {
   let findQuestion = `.q${questionNumber+1}`;
   $(findQuestion).removeClass('current');
   $(findQuestion).addClass('no');
-  $('main').append(submitDialogTemplateIncorrect);
+  $('main').append(submitDialogTemplateIncorrect());
 }
 
 function advanceQuestion() {

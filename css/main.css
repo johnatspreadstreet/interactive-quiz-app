@@ -27,6 +27,36 @@ footer {
     width: 100%;
 }
 
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    color: white; 
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button-start {
+    transform: scale(3);
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -36,6 +66,14 @@ footer {
 
 .question h1 {
     padding-top: 90px;
+}
+
+.start {
+    width: 75%;
+    position: fixed;
+    left: 50%;
+    bottom: 40px;
+    margin-left: -37.5%;
 }
 
 /* .center {
@@ -90,7 +128,7 @@ button:focus {
     transform: translate(-50%, -50%);
     width: 600px;
     max-width: 100%;
-    height: 400px;
+    height: 800px;
     max-height: 100%;
     z-index: 1010;
     background: white;
@@ -105,6 +143,7 @@ button:focus {
     left: 0;
     width: 100%;
     height: 100%;
+    text-align: center;
   
     /* spacing as needed */
     padding: 20px 50px 20px 20px;
@@ -113,6 +152,24 @@ button:focus {
     overflow: auto;
     
   }
+
+.modal-guts .title {
+    color: white;
+    mix-blend-mode: difference;
+    font-size: 30px;
+}
+
+.modal-guts .body {
+    color: white;
+    mix-blend-mode: difference;
+}
+
+.modal-guts button {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    margin: 5% auto;
+}
 
 .modal-overlay {
     z-index: 1000;

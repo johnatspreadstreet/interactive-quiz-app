@@ -76,15 +76,15 @@ function questionTemplate() {
 
 function resultsTemplate() {
   let resultsTemplate = `
-        <section class="results">
-            <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            </ul>
-        </section>
+    <section class="results">
+        <ul>
+            <div class="progress q1 current">Q1</div>
+            <div class="progress q2 all">Q2</div>
+            <div class="progress q3 all">Q3</div>
+            <div class="progress q4 all">Q4</div>
+            <div class="progress q5 all">Q5</div>
+        </ul>
+    </section>
   `;
   return resultsTemplate;
 }
@@ -114,6 +114,7 @@ const submitDialogTemplateCorrect = `
             <p class="body">${THORSTORE[questionNumber].ansText}</p>
             <img src="" alt="The mighty Mjolnir!">
             <button class="continue">Continue</button>
+            <img src="img/question-correct.gif" alt="Thor success image...good work!">
         </div>
         <div class="modal-overlay" id="modal-overlay closed"></div>
     </section>
@@ -126,6 +127,7 @@ const submitDialogTemplateIncorrect = `
             <p class="body">${THORSTORE[questionNumber].ansText}</p>
             <img src="" alt="The mighty Mjolnir!">
             <button class="continue">Continue</button>
+            <img src="img/question-wrong.gif" alt="Thor incorrect...maybe next time!">
         </div>
         <div class="modal-overlay" id="modal-overlay closed"></div>
     </section>
@@ -171,23 +173,20 @@ function userSelectAnswer() {
   // Submit button will become active after selection
   $('main').on('change', 'input', function() {
     $('main input.submit-button').removeAttr('disabled');
+    $('main').find('div').removeClass('closed');
   });
 }
 
 function userSubmitAnswer() {
   $('main').on('click', 'input.submit-button', function(e) {
     e.preventDefault();
-    $('main').find('div').removeClass('closed');
     let radioValue = $('input:checked').attr('value');
-    console.log(radioValue);
     let correctAnswer = `${THORSTORE[questionNumber].ans}`;
-    console.log(correctAnswer);
     if (radioValue === correctAnswer) {
       ifAnswerIsCorrect();
     } else {
       ifAnswerIsIncorrect();
     }
-    console.log('`userSubmitAnswer` ran');
   });
 }
 

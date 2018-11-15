@@ -63,3 +63,23 @@ button:focus {
 .modal.closed, .modal-overlay.closed, .picture-select.closed {
     display: none;
 }
+
+.results {
+    position: fixed;
+    right: 0;
+    top: 50%;
+}
+
+.all {
+    background-image: url("../img/all.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 30px;
+}
+
+.current {
+    background-image: url("../img/current.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 30px;
+}

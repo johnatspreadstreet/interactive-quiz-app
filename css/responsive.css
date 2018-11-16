@@ -4,6 +4,14 @@
 
 body {
     font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    padding: 1em;
+    height: 100vh;
+}
+
+.button-label, .button-label-submit {
+    /* calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+    padding: calc(6px + (26 - 14) * ((100vw - 320px) / (1600 - 320)));
+    margin: calc(6px + (26 - 14) * ((100vw - 320px) / (1600 - 320)));
 }
 
 /* 
@@ -19,103 +27,25 @@ Grid Measurements:
 
 */
 
-.row {
-    max-width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    margin: 0 auto;
+.wrapper {
+    display: flex;  
+    flex-flow: row wrap;
+    text-align: center;
 }
 
-/* Clearfix. See  https://css-tricks.com/snippets/css/clear-fix/ for more info*/
-.row::before,
-.row::after {
-    display: table;
-    content: '';
+.wrapper > * {
+    padding: 10px;
+    flex: 1 100%;
 }
 
-.row::after {
-    clear: both;
+@media all and (min-width: 600px) {
+    .aside { flex: 1 auto; }
 }
 
-.col-3, .col-4, .col-6, .col-12 {
-    float: left;
-
-    /* Gutters:
-        Each column is padded by half-a-gutter on each side,
-
-        Half a gutter is 10px, 10/960 (context) = 1.041666%
-    */
-    padding-left: 1.04166666%;
-    padding-right: 1.04166666%;
-}
-
-/* Mobile defaults */
-.col-3, .col-4, .col-6, .col-12 {
-    width: 100%;
-}
-
-/* Non-mobile, grid */
-@media only screen and (min-width: 640px) {
-    /* 3 columns, 3/12 in % */
-    .col-3 {
-        width: 25%;
-    }
-
-    /* 4 columns, 4/12 in % */
-    .col-4 {
-        width: 33.33%;
-    }
-
-    /* 6 columns, 6/12 in % */
-    .col-6 {
-        width: 50%;
-    }
-
-    /* 12 columns, 12/12 in % */
-    .col-12 {
-        width: 100%;
-    }
-}
-
-@media (max-width: 40em) {
-    .button-wrap {
-        margin-top: -1.5em;
-    }
-}
-
-@media (max-width: 40em) {
-    .container {
-        flex-direction: column;
-    }
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    /* Styles */
-}
-
-/* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) {
-/* Styles */
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-/* Styles */
-}
-
-/* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-/* Styles */
-}
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-/* Styles */
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-/* Styles */
+@media all and (min-width: 800px) {
+    .main    { flex: 3 0px; }
+    .aside-1 { order: 1; } 
+    .main    { order: 2; }
+    .aside-2 { order: 3; }
+    .footer  { order: 4; }
 }

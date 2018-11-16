@@ -93,34 +93,24 @@ function questionTemplate() {
       <h1>${THORSTORE[questionNumber].text}</h1>
     </section>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class='picture-select closed'>
-          <img id="radio-pic" src="${THORSTORE[questionNumber].sel4pic}" alt="">
-        </div>
-      </div>
+    <div class='main picture-select closed'>
+      <img id="radio-pic" src="${THORSTORE[questionNumber].sel4pic}" alt="">
     </div>
 
 
     <footer>
-      <form class="form container" action="">
-          <div class="inputGroup">
-              <input id="radio1" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel1}">
-              <label class="button-label" for="radio1">${THORSTORE[questionNumber].sel1}</label>
-          </div>
-          <div class="inputGroup">    
-              <input id="radio2" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel2}">
-              <label class="button-label" for="radio2">${THORSTORE[questionNumber].sel2}</label>
-          </div>
-          <div class="inputGroup">    
-              <input id="radio3" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel3}">
-              <label class="button-label" for="radio3">${THORSTORE[questionNumber].sel3}</label>
-          </div>
-          <div class="inputGroup">        
-              <input id="radio4" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel4}">
-              <label class="button-label" for="radio4">${THORSTORE[questionNumber].sel4}</label>
-          </div>
-          <input id="" class="submit-button button button-label-submit" type="submit" name="Submit" value="Submit" disabled>
+      <form action="">
+        <fieldset>
+          <input id="radio1" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel1}">
+          <label class="button-label" for="radio1">${THORSTORE[questionNumber].sel1}</label>
+          <input id="radio2" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel2}">
+          <label class="button-label" for="radio2">${THORSTORE[questionNumber].sel2}</label>
+          <input id="radio3" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel3}">
+          <label class="button-label" for="radio3">${THORSTORE[questionNumber].sel3}</label>
+          <input id="radio4" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel4}">
+          <label class="button-label" for="radio4">${THORSTORE[questionNumber].sel4}</label>
+        </fieldset>
+        <input id="" class="submit-button button-label-submit" type="submit" name="Submit" value="Submit" disabled>
       </form>
     </footer>
     `;
@@ -149,7 +139,7 @@ function submitDialogTemplateCorrect() {
       <section>
           <div class="modal" id="modal">
             <div class="modal-guts">
-              <p class="title">You got that right!</p>
+              <h1 class="title">You got that <span class="right">right!</span></h1>
               <p class="body">${THORSTORE[questionNumber].ansText}</p>
               <div class="container">
                 <img class"modal-img" src="img/question-correct.gif" alt="">
@@ -169,11 +159,11 @@ function submitDialogTemplateIncorrect() {
     <section>
       <div class="modal" id="modal">
         <div class="modal-guts">
-          <p class="title">You got that wrong!</p>
+          <h1 class="title">You got that <span class="wrong">wrong!</span></h1>
           <p class="body">${THORSTORE[questionNumber].ansText}</p>
           <div class="container">
             <img src="img/question-wrong.gif" alt="">
-            <button class="continue button button1">Continue</button>
+            <button class="continue button-label-submit">Continue</button>
           </div>
         </div>
       </div>

@@ -7,14 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/responsive.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/normalize.css" />
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed" rel="stylesheet">
 </head>
 <body>
-    <!-- <header>
-        <img class="avengers-logo" src="img/avengers-logo.jpg" alt="The Avengers logo">
-    </header> -->
-    
-    <main>
+
+    <main class="wrapper">
         <section class="intro">
             <div class="center-me">
                 <h1>The Ultimate Thor Quiz</h1>
@@ -23,39 +21,18 @@
                     <img class="" src="img/ultimate-thor.png" alt="The mighty Thor!"><br>
                 </div>
                 <div class="start">
-                    <button class="">Start Quiz</button>
+                    <button class="button-label-submit">Start Quiz</button>
                 </div>
             </div>
         </section>
-        <!-- <section>
-            <div class="row">
-                <div class="col-4">
-                    <div class="card">
-                        <img src="img/thor.png" alt="Picture of a cartoon Iron Man">
-                    </div>
-                </div>
-            </div>
-        </section> -->
     </main>
-    <section class="results">
-        <div class="container progress q1 current">Q1</div>
-        <div class="container progress q2 all">Q2</div>
-        <div class="container progress q3 all">Q3</div>
-        <div class="container progress q4 all">Q4</div>
-        <div class="container progress q5 all">Q5</div>
+    <section class="results aside-2">
+        <div class="progress q1 current">Q1</div>
+        <div class="progress q2 all">Q2</div>
+        <div class="progress q3 all">Q3</div>
+        <div class="progress q4 all">Q4</div>
+        <div class="progress q5 all">Q5</div>
     </section>
-
-    <!-- <section class="final-results">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-4">
-                <h1>Final Score: ${score} out of ${THORSTORE.length}</h1>
-                <h3>You should definitely play again!</h3>
-                <button class='play-again'>Play Again</button>
-            </div>
-            <div class="col-3"></div>
-        </div>
-    </section> -->
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

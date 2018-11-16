@@ -5,12 +5,10 @@
 body {
     background-image: url('../img/nightsky.jpg');
     color: white;
-    font-family: sans-serif;
 }
 
 h1 { 
     color: #ffffff; 
-    font-family: 'Raleway',sans-serif; 
     font-size: 8vmin;
     margin: 0 0 24px; 
     text-align: center; 
@@ -185,7 +183,7 @@ img:hover {
 }
 
 .results {
-    position: absolute;
+    position: fixed;
     margin: -190px 1px;
     right: 0;
     top: 50%;
@@ -262,6 +260,7 @@ img:hover {
     box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
     transition: 0.3s;
     user-select: none;
+    font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 
 .button-label-submit:disabled {

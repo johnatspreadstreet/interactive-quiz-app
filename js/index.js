@@ -3,10 +3,12 @@
 let questionNumber = 0;
 let score = 0;
 
+// Increases the questionNumber to move to the next index in THORSTORE
 function iterateQuestion() {
   questionNumber++;
 }
 
+// Contains the entire dataset for the quiz
 const THORSTORE = [
   {
     number: 1,
@@ -40,7 +42,7 @@ const THORSTORE = [
 
   {
     number: 3,
-    text: '3) In Norse mythology, what event was foretold to result in the death of Thor?',
+    text: '3) What event foretold Thor\'s death?',
     sel1: 'RAGNARÖK',
     sel2: 'SLEIPNIR',
     sel3: 'VALHALLA',
@@ -49,7 +51,7 @@ const THORSTORE = [
     ansText: 'Ragnarök is an important event in Norse mythology. The event is attested primarily in the Poetic Edda and foretells the death not only of Thor, but also of Odin, Tyr, Freyr, Heimdall, and Loki.',
     sel1pic: 'img/ragnarok.png',
     sel2pic: 'img/sleipnir.png',
-    sel3pic: 'img/gungnir.png',
+    sel3pic: 'img/valhalla.jpg',
     sel4pic: 'img/yggdrasil.png'
   },
 
@@ -84,15 +86,21 @@ const THORSTORE = [
   }
 ];
 
+// Template design for questions. Updates certain attributes based on question number
 function questionTemplate() {
   let questionTemplate = `
     <section class="question container">
       <h1>${THORSTORE[questionNumber].text}</h1>
     </section>
 
-    <div class='picture-select closed'>
-      <img src="${THORSTORE[questionNumber].sel4pic}" alt="">
+    <div class="row">
+      <div class="col-md-12">
+        <div class='picture-select closed'>
+          <img id="radio-pic" src="${THORSTORE[questionNumber].sel4pic}" alt="">
+        </div>
+      </div>
     </div>
+
 
     <footer>
       <form class="form container" action="">
@@ -112,13 +120,14 @@ function questionTemplate() {
               <input id="radio4" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel4}">
               <label class="button-label" for="radio4">${THORSTORE[questionNumber].sel4}</label>
           </div>
-          <input id="" class="submit-button" type="submit" name="Submit" value="Submit" disabled>
+          <input id="" class="submit-button button button-label-submit" type="submit" name="Submit" value="Submit" disabled>
       </form>
     </footer>
     `;
   return questionTemplate;
 }
 
+// Fixed results sidebar to show user what question they are on
 function resultsTemplate() {
   let resultsTemplate = `
     <section class="results">
@@ -134,6 +143,7 @@ function resultsTemplate() {
   return resultsTemplate;
 }
 
+// Modal display if user correctly answers the question
 function submitDialogTemplateCorrect() {
   const submitDialogTemplateCorrect = `
       <section>
@@ -141,10 +151,10 @@ function submitDialogTemplateCorrect() {
             <div class="modal-guts">
               <p class="title">You got that right!</p>
               <p class="body">${THORSTORE[questionNumber].ansText}</p>
-              <div>
+              <div class="container">
                 <img class"modal-img" src="img/question-correct.gif" alt="">
+                <button class="continue button-label-submit">Continue</button>
               </div>
-              <button class="continue button button1">Continue</button>
             </div>
           </div>
           <div class="modal-overlay" id="modal-overlay closed"></div>
@@ -153,7 +163,7 @@ function submitDialogTemplateCorrect() {
   return submitDialogTemplateCorrect;
 }
 
-
+// Modal display if user incorrectly answers the question
 function submitDialogTemplateIncorrect() {
   const submitDialogTemplateIncorrect = `
     <section>
@@ -161,10 +171,10 @@ function submitDialogTemplateIncorrect() {
         <div class="modal-guts">
           <p class="title">You got that wrong!</p>
           <p class="body">${THORSTORE[questionNumber].ansText}</p>
-          <div>
+          <div class="container">
             <img src="img/question-wrong.gif" alt="">
+            <button class="continue button button1">Continue</button>
           </div>
-          <button class="continue button button1">Continue</button>
         </div>
       </div>
       <div class="modal-overlay" id="modal-overlay closed"></div>
@@ -173,11 +183,13 @@ function submitDialogTemplateIncorrect() {
   return submitDialogTemplateIncorrect;
 }
 
+// Renders the questionTemplate on the screen
 function renderQuestion() {
   // This function will render a question on the page
   $('main').append(questionTemplate());
 }
 
+// Runs the renderQuestion function...might need changing in refactor
 function renderQuestionPage() {
   renderQuestion();
 }
@@ -198,16 +210,35 @@ function startQuiz() {
   });
 }
 
+// Changes the picture on the screen depending upon which selection the user makes
+function changeSelectionPicture() {
+  $('main').on('change', 'input:radio[name=sel]:checked', function() {
+    let inputVal = $('input:radio[name=sel]:checked').attr('id');
+    let sel1pic = `${THORSTORE[questionNumber].sel1pic}`;
+    let sel2pic = `${THORSTORE[questionNumber].sel2pic}`;
+    let sel3pic = `${THORSTORE[questionNumber].sel3pic}`;
+    let sel4pic = `${THORSTORE[questionNumber].sel4pic}`;
+    return (inputVal === 'radio1') ? $('main').find($('#radio-pic')).attr('src', sel1pic)
+    : (inputVal === 'radio2') ? $('main').find($('#radio-pic')).attr('src', sel2pic)
+    : (inputVal === 'radio3') ? $('main').find($('#radio-pic')).attr('src', sel3pic)
+    : $('main').find($('#radio-pic')).attr('src', sel4pic);
+  });
+}
+
 function userSelectAnswer() {
   // User will be able to select an answer
   // Submit button will become active after selection
+  // Selection picture will be updated on the screen
   $('main').on('change', 'input', function() {
     $('main input.submit-button').removeAttr('disabled');
     $('main').find('div').removeClass('closed');
+    changeSelectionPicture();
   });
 }
 
 function userSubmitAnswer() {
+  // User will be able to submit an answer
+  // If the answer is correct, run the ifAnswerIsCorrect() function, otherwise run Incorrect
   $('main').on('click', 'input.submit-button', function(e) {
     e.preventDefault();
     let radioValue = $('input:checked').attr('value');
@@ -239,6 +270,9 @@ function ifAnswerIsIncorrect() {
 }
 
 function advanceQuestion() {
+  // User should be able to advance to the next question
+  // Iterates to the next question
+  // If question number is === 5, then render the score page...otherwise keep going
   $('main').on('click', '.continue', function(e) {
     e.preventDefault();
     $('.modal').addClass('closed');
@@ -259,10 +293,12 @@ function advanceQuestion() {
 function renderScorePage(score) {
   // After user is finished, they will get the Score Page, which details their score
   let results =  `    
-    <section class="container">
-        <h1>Final Score: ${score} out of ${THORSTORE.length}</h1>
-        <h3>You should definitely play again!</h3>
-        <button class='play-again'>Play Again</button>
+    <section class="final-results container">
+      <div class="row">
+        <div class="row"><h1>Final Score: ${score} out of ${THORSTORE.length}</h1></div>
+        <div class="row"><h2>You should definitely play again!</h2></div>
+        <div class="row container"><button class='play-again button'>Play Again</button></div>
+      </div>
     </section>
     `;
   $('main').empty();
@@ -271,17 +307,21 @@ function renderScorePage(score) {
 }
 
 function restartQuiz() {
+  // User should be able to restart the quiz
   $('main').on('click', 'button.play-again', function() {
     questionNumber = 0;
     score = 0;
     $('main').empty();
+    $('section').empty();
     $('main').html(renderQuestionPage());
+    $('body').append(resultsTemplate());
   });
 }
 
 function createQuiz() {
   startQuiz();
   makeFocus();
+  changeSelectionPicture();
   userSelectAnswer();
   userSubmitAnswer();
   advanceQuestion();

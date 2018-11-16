@@ -12,12 +12,19 @@ body {
 h1 { 
     color: #ffffff; 
     font-family: 'Raleway',sans-serif; 
-    font-size: 62px; 
-    font-weight: 800; 
-    line-height: 72px; 
+    font-size: 8vmin; 
+    /* font-weight: 800; 
+    line-height: 72px;  */
     margin: 0 0 24px; 
     text-align: center; 
     text-transform: uppercase; 
+}
+
+h2 { 
+    font-size: calc(0.5rem + 2.5vmin);
+    margin: 0 0 24px; 
+    text-align: center; 
+    text-transform: uppercase;
 }
 
 footer {
@@ -28,18 +35,24 @@ footer {
 }
 
 .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    padding: 1em 2em;
+    margin: 0.5em;
     cursor: pointer;
+    color: #292929;
+    border-radius: 0.25em;
+    background: #efefef;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
+    transition: 0.3s;
+    user-select: none;
+    h1 {
+        /* font-size: 1em; */
+        font-family: $font-stack;
+      }
+}
+.button:disabled {
+    background-color: #bdc3c7;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .button1 {
@@ -53,10 +66,6 @@ footer {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.button-start {
-    transform: scale(3);
-}
-
 .container {
     display: flex;
     justify-content: center;
@@ -65,7 +74,7 @@ footer {
 }
 
 .question h1 {
-    padding-top: 90px;
+    padding-top: 1em;
 }
 
 .start {
@@ -95,6 +104,8 @@ img:hover {
     cursor:url(../img/mjolnir.cur),auto;
 }
 
+
+
 .avengers-logo {
     max-width: 10%;
     margin: 0 auto;
@@ -106,19 +117,11 @@ img:hover {
     margin-bottom: 25px;
 }
 
-header {
-    margin: 5% auto;
-}
-
-button:focus { 
-    background-color: darkred;
-}
-
 .picture-select {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    height: 400px;
 }
 
 .modal {
@@ -144,19 +147,19 @@ button:focus {
     width: 100%;
     height: 100%;
     text-align: center;
-  
+
     /* spacing as needed */
     padding: 20px 50px 20px 20px;
-  
+
     /* let it scroll */
     overflow: auto;
     
-  }
+}
 
 .modal-guts .title {
     color: white;
     mix-blend-mode: difference;
-    font-size: 30px;
+    /* font-size: 30px; */
 }
 
 .modal-guts .body {
@@ -194,12 +197,11 @@ button:focus {
     right: 0;
     top: 50%;
     width: auto;
-    font-size: 50px;
+    /* font-size: 50px; */
     background: rgba(26, 44, 48, 0.8);
     padding: 10px 10px;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
-    font-family: 'Fira Sans Extra Condensed', sans-serif;
 }
 
 .all {
@@ -233,12 +235,6 @@ button:focus {
     margin-top: -2.5em;
   }
 
-@media (max-width: 40em) {
-    .button-wrap {
-        margin-top: -1.5em;
-    }
-}
-
 .button-label {
     display: inline-block;
     padding: 1em 2em;
@@ -251,7 +247,7 @@ button:focus {
     transition: 0.3s;
     user-select: none;
     h1 {
-        font-size: 1em;
+        /* font-size: 1em; */
         font-family: $font-stack;
       }
 }
@@ -267,6 +263,23 @@ button:focus {
     box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0px -1px 0 rgba(0,0,0,0.22); 
 }
 
+.button-label-submit {
+    background: #2ECC71;
+    color: #efefef;
+    display: inline-block;
+    padding: 1em 2em;
+    margin: 0.5em;
+    cursor: pointer;
+    border-radius: 0.25em;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
+    transition: 0.3s;
+    user-select: none;
+    h1 {
+        /* font-size: 1em; */
+        font-family: $font-stack;
+        }
+}
+
 #radio1:checked + .button-label,
 #radio2:checked + .button-label,
 #radio3:checked + .button-label,
@@ -275,12 +288,6 @@ button:focus {
     color: #efefef;
 }
 
-@media (max-width: 40em) {
-    .container {
-        flex-direction: column;
-    }
-}
-
 div.progress {
-    padding: 15px;
+    padding: 30%;
 }

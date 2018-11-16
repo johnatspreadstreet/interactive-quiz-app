@@ -283,11 +283,11 @@ function advanceQuestion() {
 function renderScorePage(score) {
   // After user is finished, they will get the Score Page, which details their score
   let results =  `    
-    <section class="final-results container">
-      <div class="row">
-        <div class="row"><h1>Final Score: ${score} out of ${THORSTORE.length}</h1></div>
-        <div class="row"><h2>You should definitely play again!</h2></div>
-        <div class="row container"><button class='play-again button'>Play Again</button></div>
+    <section class="final-results">
+      <div class="">
+        <header class=""><h1>Final Score: ${score} out of ${THORSTORE.length}</h1></header>
+        <div class=""><h2>You should definitely play again!</h2></div>
+        <div class="footer"><button class='play-again button'>Play Again</button></div>
       </div>
     </section>
     `;

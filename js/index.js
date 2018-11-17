@@ -51,7 +51,7 @@ const THORSTORE = [
     ansText: 'Ragnarök is an important event in Norse mythology. The event is attested primarily in the Poetic Edda and foretells the death not only of Thor, but also of Odin, Tyr, Freyr, Heimdall, and Loki.',
     sel1pic: 'img/ragnarok.png',
     sel2pic: 'img/sleipnir.png',
-    sel3pic: 'img/valhalla.jpg',
+    sel3pic: 'img/valhalla.png',
     sel4pic: 'img/yggdrasil.png'
   },
 
@@ -89,7 +89,7 @@ const THORSTORE = [
 // Template design for questions. Updates certain attributes based on question number
 function questionTemplate() {
   let questionTemplate = `
-    <section class="question container">
+    <section role="region" class="question container">
       <h1>${THORSTORE[questionNumber].text}</h1>
     </section>
 
@@ -98,7 +98,7 @@ function questionTemplate() {
     </div>
 
 
-    <footer>
+    <footer role="contentinfo">
       <form action="">
         <fieldset>
           <input id="radio1" class="hidden selection" type="radio" name="sel" value="${THORSTORE[questionNumber].sel1}">
@@ -120,7 +120,7 @@ function questionTemplate() {
 // Fixed results sidebar to show user what question they are on
 function resultsTemplate() {
   let resultsTemplate = `
-    <section class="results">
+    <section role="region" class="results">
         <ul>
             <div class="progress q1 current">Q1</div>
             <div class="progress q2 all">Q2</div>
@@ -136,13 +136,12 @@ function resultsTemplate() {
 // Modal display if user correctly answers the question
 function submitDialogTemplateCorrect() {
   const submitDialogTemplateCorrect = `
-      <section>
+      <section role="region">
           <div class="modal" id="modal">
-            <div class="modal-guts">
+            <div class="modal-guts" style="background-image: url('img/question-correct.gif');">
               <h1 class="title">You got that <span class="right">right!</span></h1>
               <p class="body">${THORSTORE[questionNumber].ansText}</p>
               <div class="container">
-                <img class"modal-img" src="img/question-correct.gif" alt="">
                 <button class="continue button-label-submit">Continue</button>
               </div>
             </div>
@@ -156,13 +155,12 @@ function submitDialogTemplateCorrect() {
 // Modal display if user incorrectly answers the question
 function submitDialogTemplateIncorrect() {
   const submitDialogTemplateIncorrect = `
-    <section>
+    <section role="region" >
       <div class="modal" id="modal">
-        <div class="modal-guts">
+        <div class="modal-guts" style="background-image: url('img/question-wrong.gif');">
           <h1 class="title">You got that <span class="wrong">wrong!</span></h1>
           <p class="body">${THORSTORE[questionNumber].ansText}</p>
           <div class="container">
-            <img src="img/question-wrong.gif" alt="">
             <button class="continue button-label-submit">Continue</button>
           </div>
         </div>
@@ -283,11 +281,11 @@ function advanceQuestion() {
 function renderScorePage(score) {
   // After user is finished, they will get the Score Page, which details their score
   let results =  `    
-    <section class="final-results">
+    <section role="region" class="final-results">
       <div class="">
         <header class=""><h1>Final Score: ${score} out of ${THORSTORE.length}</h1></header>
         <div class=""><h2>You should definitely play again!</h2></div>
-        <div class="footer"><button class='play-again button'>Play Again</button></div>
+        <div class="start"><button class='play-again button-label-submit'>Play Again</button></div>
       </div>
     </section>
     `;

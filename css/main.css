@@ -144,15 +144,25 @@ img:hover {
     /* let it scroll */
     overflow: auto;
     
+    /* Background */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
 }
 
-.modal-guts .title {
-    color: black;
+.modal-guts .title,
+.modal-guts .body {
+    color: white;
     /* font-size: 30px; */
 }
 
-.modal-guts .body {
-    color: black;
+.modal-guts .body,
+.modal-guts .title,
+.modal-guts button,
+.modal-guts span {
+    position: relative;
+    z-index: 1;
 }
 
 .modal-guts button {
@@ -161,6 +171,27 @@ img:hover {
     text-align: center;
     margin: 5% auto;
 }
+
+.modal-guts:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+/* .modal-guts p {
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+    position: relative;
+    z-index: 1;
+} */
 
 .modal-overlay {
     z-index: 1000;
@@ -281,16 +312,21 @@ div.progress {
 }
 
 .right {
-    color: darkgreen;
+    color: rgb(46, 204, 113);
+    display: block;
+    z-index: 1;
 }
 
 .wrong {
-    color: darkred;
+    color: red;
+    display: block;
+    z-index: 1;
 }
 
 .final-results {
     background: url('../img/question-correct.gif');
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }

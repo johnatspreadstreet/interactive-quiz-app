@@ -2,6 +2,7 @@
 
 let questionNumber = 0;
 let score = 0;
+const main = $('main');
 
 // Increases the questionNumber to move to the next index in THORSTORE
 function iterateQuestion() {
@@ -176,7 +177,7 @@ function submitDialogTemplateIncorrect() {
 // Renders the questionTemplate on the screen
 function renderQuestion() {
   // This function will render a question on the page
-  $('main').append(questionTemplate());
+  main.append(questionTemplate());
 }
 
 // Runs the renderQuestion function...might need changing in refactor
@@ -202,16 +203,16 @@ function startQuiz() {
 
 // Changes the picture on the screen depending upon which selection the user makes
 function changeSelectionPicture() {
-  $('main').on('change', 'input:radio[name=sel]:checked', function() {
+  main.on('change', 'input:radio[name=sel]:checked', function() {
     let inputVal = $('input:radio[name=sel]:checked').attr('id');
     let sel1pic = `${THORSTORE[questionNumber].sel1pic}`;
     let sel2pic = `${THORSTORE[questionNumber].sel2pic}`;
     let sel3pic = `${THORSTORE[questionNumber].sel3pic}`;
     let sel4pic = `${THORSTORE[questionNumber].sel4pic}`;
-    return (inputVal === 'radio1') ? $('main').find($('#radio-pic')).attr('src', sel1pic)
-    : (inputVal === 'radio2') ? $('main').find($('#radio-pic')).attr('src', sel2pic)
-    : (inputVal === 'radio3') ? $('main').find($('#radio-pic')).attr('src', sel3pic)
-    : $('main').find($('#radio-pic')).attr('src', sel4pic);
+    return (inputVal === 'radio1') ? main.find($('#radio-pic')).attr('src', sel1pic)
+    : (inputVal === 'radio2') ? main.find($('#radio-pic')).attr('src', sel2pic)
+    : (inputVal === 'radio3') ? main.find($('#radio-pic')).attr('src', sel3pic)
+    : main.find($('#radio-pic')).attr('src', sel4pic);
   });
 }
 
@@ -219,9 +220,9 @@ function userSelectAnswer() {
   // User will be able to select an answer
   // Submit button will become active after selection
   // Selection picture will be updated on the screen
-  $('main').on('change', 'input', function() {
+  main.on('change', 'input', function() {
     $('main input.submit-button').removeAttr('disabled');
-    $('main').find('div').removeClass('closed');
+    main.find('div').removeClass('closed');
     changeSelectionPicture();
   });
 }
@@ -229,7 +230,7 @@ function userSelectAnswer() {
 function userSubmitAnswer() {
   // User will be able to submit an answer
   // If the answer is correct, run the ifAnswerIsCorrect() function, otherwise run Incorrect
-  $('main').on('click', 'input.submit-button', function(e) {
+  main.on('click', 'input.submit-button', function(e) {
     e.preventDefault();
     let radioValue = $('input:checked').attr('value');
     let correctAnswer = `${THORSTORE[questionNumber].ans}`;
@@ -247,7 +248,7 @@ function ifAnswerIsCorrect() {
   console.log(findQuestion);
   $(findQuestion).removeClass('current');
   $(findQuestion).addClass('yes');
-  $('main').append(submitDialogTemplateCorrect());
+  main.append(submitDialogTemplateCorrect());
   score++;
 }
 
@@ -256,14 +257,14 @@ function ifAnswerIsIncorrect() {
   let findQuestion = `.q${questionNumber+1}`;
   $(findQuestion).removeClass('current');
   $(findQuestion).addClass('no');
-  $('main').append(submitDialogTemplateIncorrect());
+  main.append(submitDialogTemplateIncorrect());
 }
 
 function advanceQuestion() {
   // User should be able to advance to the next question
   // Iterates to the next question
   // If question number is === 5, then render the score page...otherwise keep going
-  $('main').on('click', '.continue', function(e) {
+  main.on('click', '.continue', function(e) {
     e.preventDefault();
     $('.modal').addClass('closed');
     $('.modal-overlay').addClass('closed');
@@ -273,8 +274,8 @@ function advanceQuestion() {
     if (questionNumber === 5) {
       renderScorePage(score);
     } else {
-      $('main').empty();
-      $('main').html(renderQuestionPage());
+      main.empty();
+      main.html(renderQuestionPage());
     }
     console.log(score);
   });
@@ -291,19 +292,19 @@ function renderScorePage(score) {
       </div>
     </section>
     `;
-  $('main').empty();
-  $('main').html(results);
+  main.empty();
+  main.html(results);
   console.log('`renderScorePage` ran');
 }
 
 function restartQuiz() {
   // User should be able to restart the quiz
-  $('main').on('click', 'button.play-again', function() {
+  main.on('click', 'button.play-again', function() {
     questionNumber = 0;
     score = 0;
-    $('main').empty();
+    main.empty();
     $('section').empty();
-    $('main').html(renderQuestionPage());
+    main.html(renderQuestionPage());
     $('body').append(resultsTemplate());
   });
 }

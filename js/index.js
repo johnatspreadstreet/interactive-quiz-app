@@ -1,5 +1,6 @@
 'use strict';
 
+let $ = jQuery.noConflict();
 let questionNumber = 0;
 let score = 0;
 const main = $('main');
